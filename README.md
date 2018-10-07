@@ -64,6 +64,12 @@ I pushed whole the code on github: you can take a look at
 
 I use **ex_machina** to create factory, `mix_test_watch` to watch the test when I change the code and `excoveralls` to check code coverage.
 
+### Run test case
+
+```
+mix test
+```
+
 Let see 2 pages I wrote test case: 100% coverage >___<
 
 #### Keyboard app service
