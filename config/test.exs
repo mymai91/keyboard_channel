@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :keyboard, Keyboard.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  # username: "postgres",
+  # password: "postgres",
   database: "keyboard_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
