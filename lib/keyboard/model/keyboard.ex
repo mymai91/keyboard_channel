@@ -2,7 +2,6 @@ defmodule Keyboard.Manage.Keyboard do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "keyboards" do
     field(:name, :string)
     field(:size, :string)
@@ -17,9 +16,10 @@ defmodule Keyboard.Manage.Keyboard do
     :brand
   ]
 
+  @doc false
   def changeset(keyboard, attrs) do
     keyboard
     |> cast(attrs, @valid_attrs)
-    |> validate_required(@valid_attrs)
+    |> validate_required([])
   end
 end

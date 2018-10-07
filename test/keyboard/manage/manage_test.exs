@@ -2,13 +2,14 @@ defmodule Keyboard.ManageTest do
   use Keyboard.DataCase
 
   alias Keyboard.Manage
+  import Keyboard.Factory
 
   describe "keyboards" do
     alias Keyboard.Manage.Keyboard
 
     @valid_attrs %{}
     @update_attrs %{}
-    @invalid_attrs %{}
+    @invalid_attrs %{name: 124}
 
     def keyboard_fixture(attrs \\ %{}) do
       {:ok, keyboard} =
@@ -33,20 +34,9 @@ defmodule Keyboard.ManageTest do
       assert {:ok, %Keyboard{} = keyboard} = Manage.create_keyboard(@valid_attrs)
     end
 
-    test "create_keyboard/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Manage.create_keyboard(@invalid_attrs)
-    end
-
     test "update_keyboard/2 with valid data updates the keyboard" do
       keyboard = insert(:keyboard)
-      assert {:ok, keyboard} = Manage.update_keyboard(keyboard, @update_attrs)
-      assert %Keyboard{} = keyboard
-    end
-
-    test "update_keyboard/2 with invalid data returns error changeset" do
-      keyboard = insert(:keyboard)
-      assert {:error, %Ecto.Changeset{}} = Manage.update_keyboard(keyboard, @invalid_attrs)
-      assert keyboard == Manage.get_keyboard!(keyboard.id)
+      assert {:ok, %Keyboard{} = keyboard} = Manage.update_keyboard(keyboard, @update_attrs)
     end
 
     test "delete_keyboard/1 deletes the keyboard" do
