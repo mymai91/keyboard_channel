@@ -1,14 +1,14 @@
-defmodule Keyboard.Mixfile do
+defmodule Keyboard.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :keyboard,
-      version: "0.0.1",
-      elixir: "~> 1.4",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
@@ -32,21 +32,22 @@ defmodule Keyboard.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.2"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, github: "phoenixframework/phoenix", override: true},
+      {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10"},
+      {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
       {:cowboy, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: [:dev, :test, :ci]},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
@@ -64,7 +65,7 @@ defmodule Keyboard.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
